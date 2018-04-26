@@ -8,6 +8,7 @@ class Results extends Component {
             <div id="results">
                 <h1>Results...</h1>
                 <img width="300" src={this.props.image} />
+                {this.props.result && this.props.result[0].description}
             </div>
 		);
    	}

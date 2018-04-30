@@ -16,14 +16,16 @@ const actions = ({ setState }) => ({
                 }]
             }
         )
-        .then(response => ({ 
-            image: value, 
-            result: response.data.responses[0].logoAnnotations,
-        }))
-        .catch(error => ({ 
-            image: value, 
-            result: null
-        }))
+        .then(response => {
+            debugger;
+            var product = {
+                name: response.data.responses[0].logoAnnotations[0].description,
+                description: '',
+                price: ''
+            };
+            return { image: value, result: product }
+        })
+        .catch(error => ({ image: value, result: null }))
     }
 });
 

@@ -4,12 +4,16 @@ import {mapToProps, actions} from './store';
 
 class ListPage extends Component {
 	render() {
-        var text = "not recognised"
-        if (this.props.result && this.props.result[0] && this.props.result[0].description) text = this.props.result[0].description
         return (
             <div id="results">
                 <h1>Results...</h1>
-                <img width="300" src={this.props.image} />{text}
+                <img width="300" src={this.props.image} />
+                {this.props.result && 
+                <p>
+                    {this.props.result.name}<br />
+                    {this.props.result.description}<br />
+                    {this.props.result.price}<br />
+                </p>}
             </div>
 		);
    	}

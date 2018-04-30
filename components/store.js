@@ -17,7 +17,6 @@ const actions = ({ setState }) => ({
             }
         )
         .then(response => {
-            debugger;
             var product = {
                 name: response.data.responses[0].logoAnnotations[0].description,
                 description: '',

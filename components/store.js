@@ -8,23 +8,23 @@ const mapToProps = ({ image, result }) => ({ image, result });
 const actions = ({ setState }) => ({
     getResults(state, value) {
         return axios.post(
-            'https://vision.googleapis.com/v1/images:annotate?key=AIzaSyCTVMHDJUxUdkd9_0NhrKGC-86PObf9QYM',
-            {
-                "requests":[{
-                    "image":{ "content": value.replace("data:image/jpeg;base64,", "") },
-                    "features":[ { "type":"LOGO_DETECTION", "maxResults": 1 } ]
-                }]
-            }
+            'http://workshop-ava.azurewebsites.net/api/Camera/RecognizeImage', 
+            value
         )
         .then(response => {
-            var product = {
-                name: response.data.responses[0].logoAnnotations[0].description,
-                description: '',
-                price: ''
+            debugger;
+            var data = JSON.parse(response.data);
+            var product = data.Products[0];
+            var result = {
+                name: product.Name,
+                description: product.Products[0].FullDescription,
+                price: product.Products[0].Price
             };
-            return { image: value, result: product }
+            return { image: value, result: result };
         })
-        .catch(error => ({ image: value, result: null }))
+        .catch(error => {
+            return { image: value, result: null };
+        })
     }
 });
 

@@ -9,7 +9,7 @@ const actions = ({ setState }) => ({
     getResults(state, value) {
         setState({ image: value, result: null, loadingResult: true });
         return axios.post(
-            'http://workshop-ava.azurewebsites.net/api/Camera/RecognizeImage', 
+            'https://workshop-ava.azurewebsites.net/api/Camera/RecognizeImage', 
             value
         )
         .then(response => {

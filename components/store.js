@@ -12,7 +12,6 @@ const actions = ({ setState }) => ({
             value
         )
         .then(response => {
-            debugger;
             var data = JSON.parse(response.data);
             var product = data.Products[0];
             var result = {

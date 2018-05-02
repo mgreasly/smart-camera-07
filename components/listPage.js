@@ -5,7 +5,7 @@ import {mapToProps, actions} from './store';
 class ListPage extends Component {
 	render() {
         return (
-            <div id="results">
+            <div class="results">
                 <h1>Results...</h1>
                 <img width="300" src={this.props.image} />
                 {this.props.result && 

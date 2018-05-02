@@ -8,12 +8,17 @@ class ListPage extends Component {
             <div class="results">
                 <h1>Results...</h1>
                 <img width="300" src={this.props.image} />
-                {this.props.result && 
-                <p>
-                    {this.props.result.name}<br />
-                    {this.props.result.description}<br />
-                    {this.props.result.price}<br />
-                </p>}
+                {!this.props.loadingResult &&
+                <div>
+                    {!this.props.result && <p>Not recognised</p>}
+                    {this.props.result && 
+                    <p>
+                        {this.props.result.name}<br />
+                        {this.props.result.description}<br />
+                        {this.props.result.price}<br />
+                    </p>}
+                </div>
+                }
             </div>
 		);
    	}

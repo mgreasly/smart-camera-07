@@ -1,12 +1,13 @@
 import createStore from 'redux-zero';
 import axios from 'axios';
 
-const store = createStore({ image: null, result: null });
+const store = createStore({ image: null, result: null, loadingResult: false });
 
-const mapToProps = ({ image, result }) => ({ image, result });
+const mapToProps = ({ image, result, loadingResult }) => ({ image, result, loadingResult });
 
 const actions = ({ setState }) => ({
     getResults(state, value) {
+        setState({ image: value, result: null, loadingResult: true });
         return axios.post(
             'http://workshop-ava.azurewebsites.net/api/Camera/RecognizeImage', 
             value
@@ -19,10 +20,10 @@ const actions = ({ setState }) => ({
                 description: product.Products[0].FullDescription,
                 price: product.Products[0].Price
             };
-            return { image: value, result: result };
+            return { image: value, result: result, loadingResult: false };
         })
         .catch(error => {
-            return { image: value, result: null };
+            return { image: value, result: null, loadingResult: false };
         })
     }
 });
